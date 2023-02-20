@@ -95,7 +95,7 @@ M.register_lsp_virtual_lines = function()
               elseif type == DIAGNOSTIC then
                 -- If an overlap follows this, don't add an extra column.
                 if lelements[j + 1][1] ~= OVERLAP then
-                  table.insert(left, { "    │", highlight_groups[data.severity] })
+                  table.insert(left, { "│", highlight_groups[data.severity] })
                 end
                 overlap = false
               elseif type == OVERLAP then
@@ -105,9 +105,9 @@ M.register_lsp_virtual_lines = function()
 
             local center
             if overlap then
-              center = { { "    ├──── ", highlight_groups[diagnostic.severity] } }
+              center = { { "├──── ", highlight_groups[diagnostic.severity] } }
             else
-              center = { { "    └──── ", highlight_groups[diagnostic.severity] } }
+              center = { { "└──── ", highlight_groups[diagnostic.severity] } }
             end
 
             for msg_line in diagnostic.message:gmatch("([^\n]+)") do
@@ -120,7 +120,7 @@ M.register_lsp_virtual_lines = function()
 
               -- Special-case for continuation lines:
               if overlap then
-                center = { { "  │", highlight_groups[diagnostic.severity] }, { "     ", "" } }
+                center = { { "│", highlight_groups[diagnostic.severity] }, { "     ", "" } }
               else
                 center = { { "      ", "" } }
               end
