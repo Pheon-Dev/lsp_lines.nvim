@@ -128,11 +128,13 @@ M.register_lsp_virtual_lines = function()
           end
         end
 
-        vim.api.nvim_buf_set_extmark(bufnr, virt_lines_ns, lnum, 0, {
-          -- id = lnum,
-          virt_lines = virt_lines,
-          virt_lines_above = false,
-        })
+        if lnum > 0 then
+          vim.api.nvim_buf_set_extmark(bufnr, virt_lines_ns, lnum, 0, {
+            id = lnum,
+            virt_lines = virt_lines,
+            virt_lines_above = false,
+          })
+        end
       end
     end,
     ---@param namespace number
